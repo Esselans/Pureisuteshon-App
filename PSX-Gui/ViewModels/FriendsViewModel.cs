@@ -23,6 +23,16 @@ namespace PlayStation_Gui.ViewModels
         private FriendScrollingCollection _friendScrollingCollection;
         private ComboBox _filterComboBox;
 
+        private bool _friendLoaded = default(bool);
+        public bool FriendLoaded
+        {
+            get { return _friendLoaded; }
+            set
+            {
+                Set(ref _friendLoaded, value);
+            }
+        }
+
         private Friend _selected;
 
         public Friend Selected
@@ -45,7 +55,7 @@ namespace PlayStation_Gui.ViewModels
             }
         }
 
-        public override async void OnNavigatedTo(object parameter, NavigationMode mode, IDictionary<string, object> state)
+        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             Template10.Common.BootStrapper.Current.NavigationService.FrameFacade.BackRequested += MasterDetailViewControl.NavigationManager_BackRequested;
             MasterDetailViewControl.LoadLayout();
